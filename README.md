@@ -1,7 +1,8 @@
 # Movies-Hive
 -create react app
 -configured tailwindCss
-
+-header
+-login-form
 # features 
 -login/signUp
     -sign in/sign up form
@@ -16,3 +17,6 @@
 -moviesGPT
     -search bar
     -movies suggestion
+
+# tips 
+-use formik to build forms easily
