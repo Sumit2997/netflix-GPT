@@ -3,6 +3,9 @@
 -configured tailwindCss
 -header
 -login-form
+-sign up form
+-form validation
+-useRef hooks
 # features 
 -login/signUp
     -sign in/sign up form

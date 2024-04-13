@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import { validate } from "../utils/validate";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
+
+  const email = useRef(null);
+  const password = useRef(null);
+  const [message, setMessage] = useState("");
+  const handleSubmit = () => {
+    setMessage(validate(email.current.value, password.current.value));
+  };
+//   console.log(message);
+
   return (
     <div>
       <Header />
@@ -15,30 +25,43 @@ const Login = () => {
           alt="bg"
         />
       </div>
-      <form className="absolute w-3/12 my-36 mx-auto right-0 left-0 bg-black text-white bg-opacity-70 p-4 rounded-lg">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute w-3/12 my-36 mx-auto right-0 left-0 bg-black text-white bg-opacity-70 p-4 rounded-lg"
+      >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
-        {!isSignInForm && (<input
-          type="text"
-          placeholder="Name"
-          className="p-4 my-4 w-full bg-gray-700 rounded-lg"
-        />)}
+        {!isSignInForm && (
+          <input
+            type="text"
+            placeholder="Name"
+            className="p-4 my-4 w-full bg-gray-700 rounded-lg"
+          />
+        )}
         <input
-          type="email"
+          type="text"
+          ref={email}
           placeholder="Email Address"
           className="p-4 my-4 w-full bg-gray-700 rounded-lg"
         />
         <input
-          type="password"
+          type="text"
+          ref={password}
           placeholder="Password"
           className="p-4 my-4 w-full bg-gray-700 rounded-lg"
         />
-        <button className="p-4 my-6 bg-red-700 w-full rounded-lg">
+        {message && <p>{message}</p>}
+        <button
+          className="p-4 my-6 bg-red-700 w-full rounded-lg"
+          onClick={handleSubmit}
+        >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <p className="py-4" onClick={toggleSignInForm}>
-          {isSignInForm ? "New to NetFlix Sign Up Now" : "Already Registered? Sign in Now"}
+          {isSignInForm
+            ? "New to NetFlix Sign Up Now"
+            : "Already Registered? Sign in Now"}
         </p>
       </form>
     </div>
