@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { validate } from "../utils/validate";
+import { checkValidateData } from "../utils/validate";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -10,9 +10,9 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
-  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
   const handleSubmit = () => {
-    setMessage(validate(email.current.value, password.current.value));
+    setErrorMessage(checkValidateData(email.current.value, password.current.value));
   };
 //   console.log(message);
 
@@ -51,7 +51,7 @@ const Login = () => {
           placeholder="Password"
           className="p-4 my-4 w-full bg-gray-700 rounded-lg"
         />
-        {message && <p>{message}</p>}
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <button
           className="p-4 my-6 bg-red-700 w-full rounded-lg"
           onClick={handleSubmit}
