@@ -33,6 +33,11 @@
 -tmdb image cdn url
 -made the browser page a better ui
 -usePopularMovies Custom Hooks
+-GPT search feature
+-gpt seatch page
+-gpt search bar 
+-(feature)multi-lang feature in app
+-integrate gpt apis
 
 
 # features 
